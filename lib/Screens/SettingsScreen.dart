@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:videoplayer/customwidgets/customappbar.dart';
 
-class Settingsscreen extends StatelessWidget {
+class Settingsscreen extends StatefulWidget {
   const Settingsscreen({super.key});
 
+  @override
+  State<Settingsscreen> createState() => _SettingsscreenState();
+}
+
+class _SettingsscreenState extends State<Settingsscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,5 +16,4 @@ class Settingsscreen extends StatelessWidget {
       
     );
   }
-
 }

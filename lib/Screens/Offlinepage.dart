@@ -1,10 +1,10 @@
+// ignore: file_names
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-
 import 'package:list_all_videos/list_all_videos.dart';
 import 'package:list_all_videos/thumbnail/ThumbnailTile.dart';
-
 import 'package:video_player/video_player.dart';
 import 'package:videoplayer/Screens/FullScreen.dart';
 import 'package:videoplayer/customwidgets/Custom_listtile.dart';
@@ -19,20 +19,7 @@ class Offlinepage extends StatefulWidget {
 class _OfflinepageState extends State<Offlinepage> {
   VideoPlayerController? _controller;
   String? currentvideopath;
-  // void initState() {
-  //   super.initState();
-  //   requestpermission();
-  // }
 
-  //  final File _videos;
-  // Future requestpermission() async {
-  //   if (await Permission.storage.request().isGranted) {
-  //     setState(() {});
-  //   } else {
-  //     return ScaffoldMessenger.of(context)
-  //         .showSnackBar(SnackBar(content: Text("Storage permission denied")));
-  //   }
-  // }
   @override
   void initState() {
     super.initState();
@@ -72,42 +59,44 @@ class _OfflinepageState extends State<Offlinepage> {
                         Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Container(
-                            height: 170,
-                            width: 240,
+                            height: MediaQuery.sizeOf(context).width,
+                            width: MediaQuery.sizeOf(context).height,
                             child: AspectRatio(
                                 aspectRatio: _controller!.value.aspectRatio,
                                 child: VideoPlayer(_controller!)),
                           ),
                         ),
                         Positioned(
-                            bottom: 20,
-                            right: 20,
-                            child: IconButton(
-                                highlightColor: Colors.orange,
-                                onPressed: () {
-                                  _controller?.pause();
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (cxt) => Fullscreen(
-                                                controller: _controller,
-                                                videolist: snapshot.data!,
-                                                currentsate: snapshot.data!
-                                                    .indexWhere(
-                                                        (videofullscreen) {
-                                                  return videofullscreen
-                                                          .videoPath ==
-                                                      currentvideopath;
-                                                }),
-                                              )));
-
-                                  _controller?.play();
-                                },
-                                icon: Icon(
-                                  Icons.fullscreen_outlined,
-                                  size: 35,
-                                  color: Colors.white,
-                                ))),
+                          bottom: 20,
+                          right: 20,
+                          child: IconButton(
+                            highlightColor: Colors.orange,
+                            onPressed: () {
+                              _controller?.pause();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (cxt) => Fullscreen(
+                                    controller: _controller,
+                                    videolist: snapshot.data!
+                                        .map((video) => video.videoPath)
+                                        .toList(),
+                                    currentsate: snapshot.data!.indexWhere(
+                                      (video) =>
+                                          video.videoPath == currentvideopath,
+                                    ),
+                                  ),
+                                )
+                              ) ;
+                               _controller?.play();
+                            },
+                            icon: Icon(
+                              Icons.fullscreen_outlined,
+                              size: 35,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   Expanded(
@@ -129,8 +118,7 @@ class _OfflinepageState extends State<Offlinepage> {
                           titletext: video.videoName,
                           timetext: video.videoSize,
                           onTap: () {
-                            initVideoController(
-                                snapshot.data![index].videoPath);
+                            initVideoController(video.videoPath);
                           },
                         );
                       },
@@ -152,10 +140,11 @@ class _OfflinepageState extends State<Offlinepage> {
         height: 55,
         width: 55,
         child: FloatingActionButton(
-            child: Icon(Icons.play_arrow_rounded, size: 40),
-            backgroundColor: Colors.orange,
-            shape: CircleBorder(),
-            onPressed: () {}),
+          child: Icon(Icons.play_arrow_rounded, size: 40),
+          backgroundColor: Colors.orange,
+          shape: CircleBorder(),
+          onPressed: () {},
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );

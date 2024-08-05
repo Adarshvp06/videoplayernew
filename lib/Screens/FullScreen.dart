@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:video_player/video_player.dart';
 
+// ignore: must_be_immutable
 class Fullscreen extends StatefulWidget {
   Fullscreen(
       {super.key,
@@ -11,7 +12,7 @@ class Fullscreen extends StatefulWidget {
       required this.videolist,
       required this.currentsate});
   VideoPlayerController? controller;
-  List videolist;
+  List <String> videolist;
   int currentsate;
   @override
   State<Fullscreen> createState() => _FullscreenState();
@@ -39,8 +40,9 @@ class _FullscreenState extends State<Fullscreen> {
   // }
 
   void videoplayercontroller() {
-    widget.controller!.pause();
-    // widget.controller!.dispose();
+    // widget.controller!.pause();
+    // widget.controller!.addListener(playnextvideo);
+    widget.controller!.dispose();
     widget.controller =
         VideoPlayerController.file(File(widget.videolist[widget.currentsate]))
           ..initialize().then((_) {
@@ -50,14 +52,11 @@ class _FullscreenState extends State<Fullscreen> {
             });
           });
 
-    // setState(() {
-    //   widget.controller?.play();
-    //   ispaused = false;
-    // });
+   
   }
 
   void playnextvideo() {
-    if (widget.currentsate < widget.videolist.length - 1) {
+    if (widget.currentsate < widget.videolist.length-1) {
       setState(() {
         widget.currentsate++;
         videoplayercontroller();
@@ -73,15 +72,7 @@ class _FullscreenState extends State<Fullscreen> {
       });
     }
   }
-//   void playnext()async{
-// if(widget.currentsate !=null ){
-//   if(widget.currentsate<widget.videolist.length-1){
-//     widget.currentsate=widget.currentsate! +1;
-//   }else{
-//     widget.currentsate=0;
-//   }
-// }
-//   }
+
 
   @override
   Widget build(BuildContext context) {

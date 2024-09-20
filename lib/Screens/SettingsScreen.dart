@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:videoplayer/customwidgets/customappbar.dart';
+import 'package:videoplayer/widgets/custom_appbar.dart';
 
 class Settingsscreen extends StatefulWidget {
   const Settingsscreen({super.key});
@@ -12,7 +12,7 @@ class _SettingsscreenState extends State<Settingsscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Customappbar(appbaricons: [IconButton(onPressed: (){}, icon: Icon(Icons.more_vert_outlined))],),
+      appBar: Customappbar(appbaricons: [IconButton(onPressed: (){}, icon: const Icon(Icons.more_vert_outlined))],),
       
     );
   }

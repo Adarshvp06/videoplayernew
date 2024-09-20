@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:videoplayer/customwidgets/custombottomnav.dart';
+import 'package:videoplayer/widgets/custom_botmbar.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

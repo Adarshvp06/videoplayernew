@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:videoplayer/customwidgets/customappbar.dart';
+import 'package:videoplayer/widgets/custom_appbar.dart';
 
 class Browserscreen extends StatelessWidget {
   const Browserscreen({super.key});
@@ -8,7 +8,7 @@ class Browserscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Customappbar(appbaricons: [
-        IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
+        IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert)),
       ]),
     );
   }

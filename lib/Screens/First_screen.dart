@@ -1,17 +1,11 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:videoplayer/Screens/SettingsScreen.dart';
 import 'package:videoplayer/Screens/Offlinepage.dart';
 import 'package:videoplayer/Screens/onlinepage.dart';
 
-class FirstScreen extends StatefulWidget {
+class FirstScreen extends StatelessWidget {
   const FirstScreen({super.key});
 
-  @override
-  State<FirstScreen> createState() => _FirstScreenState();
-}
-
-class _FirstScreenState extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
     final icons = Row(
@@ -19,15 +13,15 @@ class _FirstScreenState extends State<FirstScreen> {
       children: [
         IconButton(
           onPressed: () {},
-          icon: Icon(Icons.search),
+          icon: const Icon(Icons.search),
         ),
         IconButton(
           onPressed: () {},
-          icon: Icon(Icons.replay),
+          icon: const Icon(Icons.replay),
         ),
         IconButton(
           onPressed: () {},
-          icon: Icon(Icons.more_vert),
+          icon: const Icon(Icons.more_vert),
         )
       ],
     );

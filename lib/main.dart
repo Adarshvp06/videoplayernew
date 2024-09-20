@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:videoplayer/Screens/Splash_screen.dart';
-
-
+import 'package:provider/provider.dart';
+import 'package:videoplayer/Screens/splash_screen.dart';
+import 'package:videoplayer/providers/bottom_provider.dart';
+import 'package:videoplayer/providers/button_provider.dart';
 
 void main() async {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -12,11 +13,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme:
-          ThemeData(primaryColor: Colors.orange, brightness: Brightness.dark),
-      home: SplashScreen(),
-      debugShowCheckedModeBanner: false,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) {
+            return Buttonprovider();
+          },
+        ),
+        ChangeNotifierProvider(
+          create: (context) {
+            return BottomProvider();
+          },
+        )
+      ],
+      child: MaterialApp(
+        theme:
+            ThemeData(primaryColor: Colors.orange, brightness: Brightness.dark),
+        home: const SplashScreen(),
+        debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }

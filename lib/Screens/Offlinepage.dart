@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:list_all_videos/list_all_videos.dart';
 import 'package:list_all_videos/thumbnail/ThumbnailTile.dart';
 import 'package:video_player/video_player.dart';
-import 'package:videoplayer/Screens/FullScreen.dart';
-import 'package:videoplayer/customwidgets/Custom_listtile.dart';
+import 'package:videoplayer/Screens/fullScreen.dart';
+import 'package:videoplayer/widgets/custom_listtile.dart';
 
 class Offlinepage extends StatefulWidget {
   const Offlinepage({super.key});
@@ -58,7 +58,7 @@ class _OfflinepageState extends State<Offlinepage> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(20.0),
-                          child: Container(
+                          child: SizedBox(
                             height: MediaQuery.sizeOf(context).width,
                             width: MediaQuery.sizeOf(context).height,
                             child: AspectRatio(
@@ -90,7 +90,7 @@ class _OfflinepageState extends State<Offlinepage> {
                               ) ;
                                _controller?.play();
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.fullscreen_outlined,
                               size: 35,
                               color: Colors.white,
@@ -136,14 +136,14 @@ class _OfflinepageState extends State<Offlinepage> {
           }
         },
       ),
-      floatingActionButton: Container(
+      floatingActionButton: SizedBox(
         height: 55,
         width: 55,
         child: FloatingActionButton(
-          child: Icon(Icons.play_arrow_rounded, size: 40),
           backgroundColor: Colors.orange,
-          shape: CircleBorder(),
+          shape: const CircleBorder(),
           onPressed: () {},
+          child: const Icon(Icons.play_arrow_rounded, size: 40),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,

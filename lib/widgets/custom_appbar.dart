@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
+// ignore: must_be_immutable
 class Customappbar extends StatelessWidget implements PreferredSizeWidget {
   Customappbar({super.key, required this.appbaricons});
 
